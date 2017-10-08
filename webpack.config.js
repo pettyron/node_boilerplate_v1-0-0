@@ -10,7 +10,7 @@ const javascript = {
     use: [{
         loader: 'babel-loader',
         options: {
-            presets: ['env', 'angular2']
+            presets: ['env']
         }
     }],
 };
