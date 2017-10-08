@@ -40,7 +40,7 @@ const uglify = new webpack.optimize.UglifyJsPlugin({
 
 const config = {
     entry: {
-        App: './public/scripts/app.js'
+        app: './public/scripts/app.js'
     },
     devtool: 'source-map',
     output: {
