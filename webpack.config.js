@@ -5,8 +5,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
+// TODO Configure Webpack for Development and Production Environments
+// TODO Configure Webpack with code splitting to deal with larger library sets i.e. React|Angular etc.
+
 const javascript = {
     test: /\.(js)$/,
+    exclude: '/node_modules/',
     use: [{
         loader: 'babel-loader',
         options: {
@@ -32,12 +36,6 @@ const styles = {
     use: ExtractTextPlugin.extract(['css-loader?sourceMap', postcss, 'sass-loader?sourceMap'])
 };
 
-const uglify = new webpack.optimize.UglifyJsPlugin({
-    compress: {
-        warnings: false
-    }
-});
-
 const config = {
     entry: {
         app: './public/scripts/app.js'
@@ -59,7 +57,12 @@ const config = {
             files: ['views/**/*.pug'],
             notify: false
         }),
-        new ExtractTextPlugin('main.css')
+        new ExtractTextPlugin('main.css'),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        })
     ]
 };
 
